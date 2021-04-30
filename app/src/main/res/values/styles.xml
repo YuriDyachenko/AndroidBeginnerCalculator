@@ -11,10 +11,12 @@
 
     <style name="button_digit_style" parent="button_style">
         <item name="android:backgroundTint">@color/purple_700</item>
+        <item name="android:tag">@string/tag_digit_button</item>
     </style>
 
     <style name="button_other_style" parent="button_style">
         <item name="android:backgroundTint">@color/purple_500</item>
+        <item name="android:tag">@string/tag_other_button</item>
     </style>
 
     <style name="linear_buttons">

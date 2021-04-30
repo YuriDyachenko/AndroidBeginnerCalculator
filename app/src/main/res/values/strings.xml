@@ -20,4 +20,6 @@
     <string name="button_xor">^</string>
     <string name="button_rest">%</string>
     <string name="button_equal">=</string>
+    <string name="tag_other_button">OTHER_BUTTON</string>
+    <string name="tag_digit_button">DIGIT_BUTTON</string>
 </resources>
