@@ -118,25 +118,15 @@
 
         <TextView
             android:id="@+id/left_operand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dp"
-            android:text="@string/button_digit_0"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            style="@style/text_view_operand"
+            android:layout_marginBottom="@dimen/left_operand_margin_bottom"
+            android:textSize="@dimen/left_operand_text_size" />
 
         <TextView
             android:id="@+id/right_operand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dp"
-            android:text="@string/button_digit_0"
-            android:textColor="@color/white"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+            style="@style/text_view_operand"
+            android:layout_marginBottom="@dimen/right_operand_margin_bottom"
+            android:textSize="@dimen/right_operand_text_size" />
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
