@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import static dyachenko.androidbeginnercalculator.Operation.XOR;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private final String KEY_CALCULATOR_DATA = "EXTRA_CALCULATOR_DATA";
     private TextView tvLeftOperand;
     private TextView tvRightOperand;
     private Calculator calculator;
@@ -80,5 +82,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 v.setOnClickListener(this);
             }
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_CALCULATOR_DATA, calculator.createCalculatorData());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        calculator.setFromCalculatorData(savedInstanceState.getParcelable(KEY_CALCULATOR_DATA));
+        updateViews();
     }
 }

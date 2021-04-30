@@ -23,6 +23,17 @@ public class Calculator {
         operation = null;
     }
 
+    public CalculatorData createCalculatorData() {
+        return new CalculatorData(leftOperand.toString(), rightOperand.toString(), operation);
+    }
+
+    public void setFromCalculatorData(CalculatorData data) {
+        clearAll();
+        leftOperand.append(data.getLeftOperand());
+        rightOperand.append(data.getRightOperand());
+        operation = data.getOperation();
+    }
+
     public void registerOperation(Operation op, String value) {
         mapByStringOperations.put(value, op);
         mapByOperations.put(op, value);
