@@ -2,8 +2,6 @@
 <resources>
 
     <style name="button_style">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:textSize">@dimen/button_text_size</item>
@@ -11,24 +9,18 @@
 
     <style name="button_digit_style" parent="button_style">
         <item name="android:backgroundTint">@color/purple_700</item>
-        <item name="android:tag">@string/tag_digit_button</item>
     </style>
 
     <style name="button_other_style" parent="button_style">
         <item name="android:backgroundTint">@color/purple_500</item>
-        <item name="android:tag">@string/tag_other_button</item>
     </style>
 
     <style name="linear_buttons">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="text_view_operand">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:text">@string/button_digit_0</item>
         <item name="android:textColor">@color/white</item>

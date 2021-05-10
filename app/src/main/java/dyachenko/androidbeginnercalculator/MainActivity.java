@@ -24,7 +24,7 @@ import static dyachenko.androidbeginnercalculator.Operation.XOR;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final String KEY_CALCULATOR_DATA = "EXTRA_CALCULATOR_DATA";
+    private final static String KEY_CALCULATOR_DATA = "EXTRA_CALCULATOR_DATA";
     private TextView tvLeftOperand;
     private TextView tvRightOperand;
     private Calculator calculator;
