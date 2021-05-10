@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/stars"
     android:orientation="horizontal"
-    android:theme="@style/Theme.Calculator"
     tools:context=".MainActivity">
 
     <LinearLayout
