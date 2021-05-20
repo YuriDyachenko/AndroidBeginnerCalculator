@@ -3,7 +3,6 @@ package dyachenko.androidbeginnercalculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -25,14 +24,11 @@ public class SettingsActivity extends AppCompatActivity {
     private void initViews() {
         radioGroup = (RadioGroup) findViewById(R.id.themes_group);
 
-        findViewById(R.id.apply).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(MainActivity.KEY_THEME, themeById(radioGroup.getCheckedRadioButtonId()));
-                setResult(Activity.RESULT_OK, intent);
-                finish();
-            }
+        findViewById(R.id.apply).setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.putExtra(MainActivity.KEY_THEME, themeById(radioGroup.getCheckedRadioButtonId()));
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         });
 
         Intent intent = getIntent();
