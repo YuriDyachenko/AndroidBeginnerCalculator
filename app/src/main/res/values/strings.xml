@@ -22,4 +22,10 @@
     <string name="button_equal">=</string>
     <string name="tag_other_button">OTHER_BUTTON</string>
     <string name="tag_digit_button">DIGIT_BUTTON</string>
+    <string name="app_day_theme">App day theme</string>
+    <string name="app_night_theme">App night theme</string>
+    <string name="default_day_theme">Default day theme</string>
+    <string name="default_night_theme">Default night theme</string>
+    <string name="apply">APPLY</string>
+    <string name="action_settings">Settings</string>
 </resources>
