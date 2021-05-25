@@ -5,4 +5,6 @@
     <dimen name="right_operand_text_size">36sp</dimen>
     <dimen name="left_operand_margin_bottom">20dp</dimen>
     <dimen name="right_operand_margin_bottom">20dp</dimen>
+    <dimen name="error_margin_bottom">20dp</dimen>
+    <dimen name="error_text_size">36sp</dimen>
 </resources>

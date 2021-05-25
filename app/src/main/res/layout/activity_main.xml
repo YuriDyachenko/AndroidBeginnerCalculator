@@ -1,121 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/stars"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/buttons_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/error"
+            style="@style/text_view_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
             android:id="@+id/left_operand"
             style="@style/text_view_operand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/left_operand_margin_bottom"
             android:textSize="@dimen/left_operand_text_size" />
 
         <TextView
             android:id="@+id/right_operand"
             style="@style/text_view_operand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/right_operand_margin_bottom"
             android:textSize="@dimen/right_operand_text_size" />
 
-        <LinearLayout style="@style/linear_buttons">
+        <LinearLayout
+            style="@style/linear_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_ce"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_clear" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_c"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_clear_all" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_delete"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_delete" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_plus"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_plus" />
         </LinearLayout>
 
-        <LinearLayout style="@style/linear_buttons">
+        <LinearLayout
+            style="@style/linear_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_1"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_1" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_2"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_2" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_3"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_3" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_minus"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_minus" />
         </LinearLayout>
 
-        <LinearLayout style="@style/linear_buttons">
+        <LinearLayout
+            style="@style/linear_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_4"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_4" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_5"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_5" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_6"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_6" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_multiply"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_multiply" />
         </LinearLayout>
 
-        <LinearLayout style="@style/linear_buttons">
+        <LinearLayout
+            style="@style/linear_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_7"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_7" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_8"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_8" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_9"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_9" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_divide"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_divide" />
         </LinearLayout>
 
-        <LinearLayout style="@style/linear_buttons">
+        <LinearLayout
+            style="@style/linear_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_0"
                 style="@style/button_digit_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_digit_0" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_xor"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_xor" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_rest"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_rest" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_equal"
                 style="@style/button_other_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/button_equal" />
         </LinearLayout>
     </LinearLayout>

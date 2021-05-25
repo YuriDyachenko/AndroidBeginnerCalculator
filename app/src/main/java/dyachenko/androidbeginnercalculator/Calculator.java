@@ -1,26 +1,32 @@
 package dyachenko.androidbeginnercalculator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static dyachenko.androidbeginnercalculator.Operation.CLEAR;
+import static dyachenko.androidbeginnercalculator.Operation.CLEAR_ALL;
+import static dyachenko.androidbeginnercalculator.Operation.DELETE;
+import static dyachenko.androidbeginnercalculator.Operation.DIVIDE;
 import static dyachenko.androidbeginnercalculator.Operation.EQUAL;
+import static dyachenko.androidbeginnercalculator.Operation.MINUS;
+import static dyachenko.androidbeginnercalculator.Operation.MULTIPLY;
+import static dyachenko.androidbeginnercalculator.Operation.PLUS;
+import static dyachenko.androidbeginnercalculator.Operation.REST;
+import static dyachenko.androidbeginnercalculator.Operation.XOR;
 
 public class Calculator {
-    public final String TAG_DIGIT_BUTTON;
-    public final String TAG_OTHER_BUTTON;
-    private final String DIGIT_0;
     private final static int MAX_OPERAND_LENGTH = 15;
     private final StringBuilder leftOperand = new StringBuilder();
     private final StringBuilder rightOperand = new StringBuilder();
-    private final Map<String, Operation> mapByStringOperations = new HashMap<>();
-    private final Map<Operation, String> mapByOperations = new HashMap<>();
-    private Operation operation;
+    private final StringBuilder error = new StringBuilder();
+    private Operation operation = null;
+    private final Map<Integer, String> digitButtons = new HashMap<>();
+    private final Map<Integer, Operation> operationButtons = new HashMap<>();
 
-    public Calculator(String tag_digit_button, String tag_other_button, String digit_0) {
-        TAG_DIGIT_BUTTON = tag_digit_button;
-        TAG_OTHER_BUTTON = tag_other_button;
-        DIGIT_0 = digit_0;
-        operation = null;
+    public Calculator() {
+        fillDigits();
+        fillOperations();
     }
 
     public CalculatorData createCalculatorData() {
@@ -34,9 +40,11 @@ public class Calculator {
         operation = data.getOperation();
     }
 
-    public void registerOperation(Operation op, String value) {
-        mapByStringOperations.put(value, op);
-        mapByOperations.put(op, value);
+    public ArrayList<Integer> getAllButtonIds() {
+        ArrayList<Integer> ids = new ArrayList<>();
+        ids.addAll(digitButtons.keySet());
+        ids.addAll(operationButtons.keySet());
+        return ids;
     }
 
     public String getRightOperand() {
@@ -47,11 +55,17 @@ public class Calculator {
         return leftOperand.toString() + getOperationString();
     }
 
-    public void handle(String tag, String text) {
-        if (tag.equals(TAG_DIGIT_BUTTON)) {
-            handleDigit(text);
-        } else {
-            handleOther(text);
+    public String getError() {
+        return error.toString();
+    }
+
+    public void handleButton(int id) {
+        clearBuilder(error);
+
+        if (digitButtons.containsKey(id)) {
+            handleDigit(digitButtons.get(id));
+        } else if (operationButtons.containsKey(id)) {
+            handleOther(operationButtons.get(id));
         }
     }
 
@@ -59,40 +73,35 @@ public class Calculator {
         if (rightOperand.length() == MAX_OPERAND_LENGTH) {
             return;
         }
-        if (digit.equals(DIGIT_0) && rightOperand.length() == 0) {
-            return;
-        }
         rightOperand.append(digit);
     }
 
-    public void handleOther(String value) {
-        Operation op = mapByStringOperations.get(value);
-        if (op != null) {
-            switch (op) {
+    public void handleOther(Operation operation) {
+        if (operation == null) {
+            return;
+        }
+        if (operation.isArithmetic()) {
+            calc();
+            if (operation != EQUAL) {
+                if (!rightIsEmpty()) {
+                    rightToLeft();
+                    clearRight();
+                }
+                if (!leftIsEmpty()) {
+                    this.operation = operation;
+                }
+            }
+        } else {
+            switch (operation) {
                 case DELETE:
                     delete();
                     break;
                 case CLEAR:
                     clear();
                     break;
-                case CLEARALL:
+                case CLEAR_ALL:
                     clearAll();
                     break;
-                default:
-                    handleArithmeticOperation(op);
-            }
-        }
-    }
-
-    public void handleArithmeticOperation(Operation op) {
-        calc();
-        if (op != EQUAL) {
-            if (!rightIsEmpty()) {
-                rightToLeft();
-                clearRight();
-            }
-            if (!leftIsEmpty()) {
-                this.operation = op;
             }
         }
     }
@@ -117,19 +126,25 @@ public class Calculator {
             case MULTIPLY:
                 return a * b;
             case DIVIDE:
-                return a / b;
+                try {
+                    return a / b;
+                } catch (ArithmeticException exception) {
+                    error.append("Division by zero!");
+                    return 0;
+                }
             case REST:
                 return a % b;
             case XOR:
                 return a ^ b;
         }
+        error.append("Wrong operation!");
         return 0;
     }
 
     private void delete() {
         int length = rightOperand.length();
         if (length > 0) {
-            rightOperand.deleteCharAt(--length);
+            rightOperand.deleteCharAt(length - 1);
         }
     }
 
@@ -172,7 +187,33 @@ public class Calculator {
     }
 
     private String getOperationString() {
-        String op = mapByOperations.get(operation);
-        return op == null ? "" : " " + op;
+        return operation == null ? "" : " " + operation.getValue();
     }
+
+    private void fillOperations() {
+        operationButtons.put(R.id.button_c, CLEAR_ALL);
+        operationButtons.put(R.id.button_ce, CLEAR);
+        operationButtons.put(R.id.button_delete, DELETE);
+        operationButtons.put(R.id.button_divide, DIVIDE);
+        operationButtons.put(R.id.button_equal, EQUAL);
+        operationButtons.put(R.id.button_minus, MINUS);
+        operationButtons.put(R.id.button_multiply, MULTIPLY);
+        operationButtons.put(R.id.button_plus, PLUS);
+        operationButtons.put(R.id.button_rest, REST);
+        operationButtons.put(R.id.button_xor, XOR);
+    }
+
+    private void fillDigits() {
+        digitButtons.put(R.id.button_0, "0");
+        digitButtons.put(R.id.button_1, "1");
+        digitButtons.put(R.id.button_2, "2");
+        digitButtons.put(R.id.button_3, "3");
+        digitButtons.put(R.id.button_4, "4");
+        digitButtons.put(R.id.button_5, "5");
+        digitButtons.put(R.id.button_6, "6");
+        digitButtons.put(R.id.button_7, "7");
+        digitButtons.put(R.id.button_8, "8");
+        digitButtons.put(R.id.button_9, "9");
+    }
+
 }
